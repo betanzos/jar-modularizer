@@ -6,7 +6,7 @@
 
     <groupId>com.betanzos</groupId>
     <artifactId>jar-modularizer</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 
     <name>JarModularizer</name>
     <description>Lightweight java command line tool for make non-modular JAR files compatible with Java Platform Module System.</description>

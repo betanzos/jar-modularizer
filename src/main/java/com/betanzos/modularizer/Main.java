@@ -36,7 +36,7 @@ import java.time.temporal.ChronoUnit;
 public final class Main {
 
     private static final String prodName = "JarModularizer";
-    private static final String version = "1.0.0";
+    private static final String version = "1.0.1";
     private static final String helpText;
 
     // TODO Mover a un archivo aparte
