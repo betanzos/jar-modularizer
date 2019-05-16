@@ -135,7 +135,6 @@ final class Compiler {
 
         // Ejecutar el comando de compilación
         Process compilerProcess = new ProcessBuilder()
-                .directory(new File(targetModuleDir))
                 .command(commandList)
                 .start();
         compilerProcess.waitFor(5, TimeUnit.SECONDS);

@@ -39,11 +39,11 @@ public class TreeNode<T> {
         if (data == null) {
             throw new IllegalArgumentException("'data' can´t be null");
         }
-        
+
         this.data = data;
         children = new ArrayList<>();
     }
-    
+
     public T getData() {
         return data;
     }
@@ -70,7 +70,7 @@ public class TreeNode<T> {
                 i++;
             }
         }
-        
+
         return found ? i : -1;
     }
 

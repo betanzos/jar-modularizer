@@ -112,7 +112,7 @@ public final class Main {
                     // Si entra aquí significa que hubo errores durante el proceso, pero quizás algunos
                     // jars pudieron ser modularizados
                     System.out.println("--------------------------------------------------------------------");
-                    System.out.println("  Process finish with some non fatal erros. Maybe some JAR files were modulariced.");
+                    System.out.println("  Process finish with some non fatal erros. Maybe some JAR files were modularized.");
                 } else {
                     System.out.println();
                     System.out.println("--------------------------------------------------------------------");

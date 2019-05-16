@@ -43,22 +43,6 @@ public class Tree<T> {
         return root == null;
     }
 
-    /**
-     * Elimina el nodo {@code node} del árbol. Si {@code node} tiene hijos, estos
-     * pasan a ser hijos de su padre.
-     * 
-     * @param node - Nodo a eliminar
-     * @return Los datos del nodo eliminado
-     */
-    public T remove(TreeNode<T> node) {
-        TreeNode<T> father = getFather(node);
-        if (father != null) {
-            father.getChildren().addAll(node.getChildren());
-            return node.getData();
-        }
-        return null;
-    }
-
     public TreeNode<T> getRoot() {
         return root;
     }
@@ -76,30 +60,6 @@ public class Tree<T> {
             }
         }
         return nodeList;
-    }
-
-    public List<TreeNode<T>> getLeaves() {
-        List<TreeNode<T>> nodeList = getPreOrderNodeList();
-        List<TreeNode<T>> leavesList = new ArrayList<>();
-        for (TreeNode<T> node : nodeList) {
-            if (node.isLeaf()) {
-                leavesList.add(node);
-            }
-        }
-        
-        return leavesList;
-    }
-
-    public int getTreeDegree() {
-        List<TreeNode<T>> nodeList = getPreOrderNodeList();
-        int treeDegree = 0;
-        for (TreeNode<T> node : nodeList) {
-            if (node.degree() > treeDegree) {
-                treeDegree = node.degree();
-            }
-        }
-        
-        return treeDegree;
     }
 
     public int getTreeLevel() {
@@ -160,19 +120,6 @@ public class Tree<T> {
             }
         }
         return founds;
-    }
-
-    public TreeNode<T> findNodeByData(T data) {
-        List<TreeNode<T>> nodeList = getPreOrderNodeList();
-        int i = 0;
-        while (i < nodeList.size()) {
-            TreeNode<T> node = nodeList.get(i);
-            if (node.getData().equals(data)) {
-                return node;
-            }
-            i++;
-        }
-        return null;
     }
 
     public TreeNode<T> findNodeByData(T data, BiPredicate<T, T> predicate) {

@@ -159,7 +159,7 @@ class Modularizer {
         sortArtifacts();
 
         // Modularizar cada uno de los JARs
-        artifactList.forEach(a -> {
+        artifactList.forEach(a ->
              jarFilesList.stream()
                     .filter(file -> a.getName().equals(file.getName()))
                     .findFirst()
@@ -167,8 +167,8 @@ class Modularizer {
                         if (!modularizeJar(file, a)) {
                             countErrorFounds++;
                         }
-                    });
-        });
+                    })
+        );
     }
 
     /**
@@ -293,8 +293,6 @@ class Modularizer {
                 throw new RuntimeException("Can not create temp dir '" + tempArtifactDir + "'.");
             }
 
-            Set<String> nonEmptyPackages = new HashSet<>();
-
             // Validar que el jar no tenga al menos una definición de módulo
             jarFile.stream()
                     .filter(entry -> entry.getName().contains("module-info.class"))
@@ -304,6 +302,7 @@ class Modularizer {
                     });
 
             // Extraer el contenido del archivo JAR
+            Set<String> nonEmptyPackages = new HashSet<>();
             jarFile.stream()
                     // Ordenar las entradas para que los directorios siempre aparezcan antes de los archivos que contiene
                     .sorted(Comparator.comparing(JarEntry::getName))
@@ -427,21 +426,20 @@ class Modularizer {
                 .append(" {")
                 .append((char) Character.LINE_SEPARATOR);
 
+        // Por defecto se exportarán todos aquellos paquetes que contengan archivos de clase
+        Set<String> finalPackagesList = jarNonEmptyPackages;
+
+        // Si se ha especificado explícitamente los paquetes a exportar estos serán los que se
+        // agregarán al descriptor del módulo
         if (module.getExportsPackages() != null) {
-            module.getExportsPackages().forEach(p -> builder.append("    exports ")
-                    .append(p)
-                    .append(";")
-                    .append((char) Character.LINE_SEPARATOR)
-            );
-        } else {
-            // Si no se ha especificado la lista de paquetes a exportar se exportarán todos
-            // aquellos paquetes que contengan archivos de clase
-            jarNonEmptyPackages.forEach(p -> builder.append("    exports ")
-                    .append(p)
-                    .append(";")
-                    .append((char) Character.LINE_SEPARATOR)
-            );
+            finalPackagesList = module.getExportsPackages();
         }
+
+        finalPackagesList.forEach(p -> builder.append("    exports ")
+                .append(p)
+                .append(";")
+                .append((char) Character.LINE_SEPARATOR)
+        );
 
         if (module.getRequiresModules() != null) {
             module.getRequiresModules().forEach(m -> builder.append("    requires ")
@@ -516,7 +514,7 @@ class Modularizer {
             jos.flush();
             jos.closeEntry();
         } catch (Exception e) {
-            throw new RuntimeException("Error pathing original jar file. " + e.getMessage(), e);
+            throw new RuntimeException("Error to patching original jar file. " + e.getMessage(), e);
         }
     }
 }
