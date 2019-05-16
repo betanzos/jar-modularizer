@@ -73,7 +73,7 @@ public final class Main {
                 .append(getParamHelpLine("--module-path <path-group>", "Path group of directories and/or files containing depending modules."))
                 .append(getParamHelpLine("--jdk-home <path>", "Path to JDK root directory. Default is the result of call System.getProperty(\"java.home\")"))
                 .append(getParamHelpLine("--version", "Display program version and exit."))
-                .append(getParamHelpLine("--help", "Display this help and exit."))
+                .append(getParamHelpLine("--help, -h", "Display this help and exit."))
                 .append("\n")
                 .append("Copyright (c) 2019 Eduardo E. Betanzos Morales")
                 .toString();
@@ -88,7 +88,7 @@ public final class Main {
             System.out.println();
             System.out.println("Invalid execution");
             System.out.println();
-            System.out.println("Run with --help");
+            System.out.println("Run with --help or -h");
             return;
         }
 
@@ -143,7 +143,7 @@ public final class Main {
             System.out.println();
             System.out.println("Invalid execution. Mandatory params must be passed.");
             System.out.println();
-            System.out.println("Run with --help");
+            System.out.println("Run with --help or -h");
             return;
         }
     }
@@ -152,7 +152,7 @@ public final class Main {
         for (int i = 0; i < args.length; i++) {
             String item = args[i];
 
-            if (item.equals("--help")) {
+            if (item.equals("--help") || item.equals("-h")) {
                 showHelp = true;
                 break;
             } else if (item.equals("--version")) {
