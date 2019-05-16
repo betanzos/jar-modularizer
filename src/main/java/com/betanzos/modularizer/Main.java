@@ -56,22 +56,31 @@ public final class Main {
 
     static {
         helpText = new StringBuilder()
+                .append("usage: java -jar jar-modularizer.jar --descriptor <path> --source <path>\n")
+                .append("                                     [--dest <path>] [--module-path <path-group>] [--jdk-home <path>]\n")
+                .append("                                     [--version] [--help, -h]\n")
+                .append("\n")
                 .append("Wellcome to ").append(prodName).append("!\n")
                 .append("------------------------------------------\n")
                 .append("Version: ").append(version).append("\n")
-                .append("Usage: java -jar jar-modularizer.jar --descriptor <file-path> --source <dir-path> [OPTIONS]\n\n")
-                .append(getParamHelpLine("--descriptor", "Path to modularization descriptor file."))
-                .append(getParamHelpLine("--source", "Path to directory containing source JAR files."))
-                .append(getParamHelpLine("--dest", "(Optional) Path to modularized JAR files destination directory. Will be created is not exist. Default is --source/mods."))
-                .append(getParamHelpLine("--module-path", "(Optional) Path to directories ans/or files containing depending modules."))
-                .append(getParamHelpLine("--jdk-home", "(Optional) Path to JDK root directory. Default is the result of call System.getProperty(\"java.home\")"))
-                .append(getParamHelpLine("--help", "Display this help and exit."))
+                .append("\n")
+                .append("mandatory arguments:\n")
+                .append(getParamHelpLine("--descriptor <path>", "Path to modularization descriptor file."))
+                .append(getParamHelpLine("--source <path>", "Path to directory containing source JAR files."))
+                .append("\n")
+                .append("optional arguments:\n")
+                .append(getParamHelpLine("--dest <path>", "Path to modularized JAR files destination directory. Will be created is not exist. Default is --source/mods."))
+                .append(getParamHelpLine("--module-path <path-group>", "Path group of directories and/or files containing depending modules."))
+                .append(getParamHelpLine("--jdk-home <path>", "Path to JDK root directory. Default is the result of call System.getProperty(\"java.home\")"))
                 .append(getParamHelpLine("--version", "Display program version and exit."))
+                .append(getParamHelpLine("--help", "Display this help and exit."))
+                .append("\n")
+                .append("Copyright (c) 2019 Eduardo E. Betanzos Morales")
                 .toString();
     }
 
     private static String getParamHelpLine(String param, String description) {
-        return String.format("   %-18s %s%n", param, description);
+        return String.format("  %-27s %s%n", param, description);
     }
 
     public static void main(String[] args) {
