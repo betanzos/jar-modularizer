@@ -1,6 +1,8 @@
 # JarModularizer
 Este proyecto es una herramineta ligera de línea de comandos de Java para hacer archivos JAR no modulares compatibles con el Java Platform Module System. Está inspirado en la idea del proyecto [moditect-maven-plugin de ModiTect](https://github.com/moditect/moditect) pero no se copió, estudió o consultó su código para el desarrollo de este proyecto.
 
+Ver proyecto hermano [PyJarModularizer](https://github.com/betanzos/py-jar-modularizer/).
+
 ## Uso
 El modo en que JarModularizer trabaja es simple. Necesita de un archivo JSON de configuración, llamado [descriptor de modularización](#formato-del-descriptor-de-modularización), que contiene la descripción de cómo cada archivo JAR, llamado artefacto, será convertido en un módulo de java; y la ruta al directorio fuente, en el cual podremos encontrar los archivos JAR no modulares.
 
